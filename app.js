@@ -36,7 +36,7 @@ app.post('/', function(req, res){
 
     const options = {
         method: 'POST',
-        auth: 'arturo1:9e99f11e0ddc94318c54ba22f6e7e06f-us10'
+        auth: 'arturo1:40b054b3c2120fae22c41b0a4718e668-us10'
     }
 
     const request = https.request(url, options, function(response){
@@ -59,6 +59,10 @@ app.post('/', function(req, res){
 
 
 app.post('/failure', function(req, res){
+    res.redirect('/');
+});
+
+app.post('/success', function(req, res){
     res.redirect('/');
 });
 
