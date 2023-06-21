@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const request = require('request');
 const https = require('https');
+require('dotenv').config();
+
+const apiKey = process.env.API_KEY;
+const audience = process.env.AUDIENCE_ID;
+const mailDC = process.env.MAIL_DC;
 
 const app = express();
 
@@ -32,11 +36,11 @@ app.post('/', function(req, res){
 
     const jsonData = JSON.stringify(data);
 
-    const url = 'https://us10.api.mailchimp.com/3.0/lists/7bddde6e6b';
+    const url = 'https://'+mailDC+'.api.mailchimp.com/3.0/lists/'+audience;
 
     const options = {
         method: 'POST',
-        auth: 'arturo1:40b054b3c2120fae22c41b0a4718e668-us10'
+        auth: apiKey
     }
 
     const request = https.request(url, options, function(response){
@@ -69,8 +73,3 @@ app.post('/success', function(req, res){
 app.listen(process.env.PORT || 3000, function(){
     console.log('Server started at port 3000');
 });
-
-// API Key
-// 9e99f11e0ddc94318c54ba22f6e7e06f-us10
-
-// ID 7bddde6e6b
